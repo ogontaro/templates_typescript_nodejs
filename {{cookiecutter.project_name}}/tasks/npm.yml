@@ -1,0 +1,13 @@
+version: '3'
+
+tasks:
+  init:
+    desc: init project
+    cmds:
+      - bash ./init.sh
+    silent: true
+  lint:
+    desc: lint project
+    cmds:
+      - npm run lint
+    silent: true
