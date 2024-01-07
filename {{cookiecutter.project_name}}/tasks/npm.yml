@@ -2,12 +2,11 @@ version: '3'
 
 tasks:
   init:
-    desc: init project
+    desc: init npm project for {{cookiecutter.project_name}}
     cmds:
-      - bash ./init.sh
-    silent: true
+      - nodenv install
+      - npm install
   lint:
-    desc: lint project
+    desc: lint npm project for {{cookiecutter.project_name}}
     cmds:
       - npm run lint
-    silent: true
