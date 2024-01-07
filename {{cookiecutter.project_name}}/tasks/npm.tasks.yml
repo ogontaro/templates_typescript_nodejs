@@ -4,7 +4,7 @@ tasks:
   init:
     desc: init npm project for {{cookiecutter.project_name}}
     cmds:
-      - nodenv install
+      - nodenv install --skip-existing
       - npm install
   lint:
     desc: lint npm project for {{cookiecutter.project_name}}
