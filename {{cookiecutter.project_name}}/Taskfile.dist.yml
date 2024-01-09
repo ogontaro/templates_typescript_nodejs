@@ -2,6 +2,7 @@ version: '3'
 
 includes:
   npm: 'tasks/npm.tasks.yml'
+  prisma: 'tasks/prisma.tasks.yml'
   cruft: 'tasks/cruft.tasks.yml'
 
 tasks:

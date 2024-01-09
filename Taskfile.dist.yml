@@ -1,0 +1,12 @@
+version: '3'
+
+tasks:
+  default:
+    desc: show commands
+    cmds:
+      - task -l --sort none
+  cookiecutter:test:init:
+    desc: generate a new project from a cookiecutter template
+    cmds:
+      - cookiecutter . -f --no-input project_name=test
+      - cp test/.env.example test/.env
