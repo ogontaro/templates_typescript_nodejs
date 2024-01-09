@@ -15,7 +15,7 @@ jobs:
           CRUFT_GITHUB_ACCESS_TOKEN: ${{ secrets.CRUFT_GITHUB_ACCESS_TOKEN }}
         run: |
           REPOS=(
-            "ogontaro/ogontaro_infra"
+            "ogontaro/mizu-meter_sensor"
           )
           for REPO in "${REPOS[@]}"; do
             curl \
