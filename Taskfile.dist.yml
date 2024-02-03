@@ -8,5 +8,8 @@ tasks:
   cookiecutter:test:init:
     desc: generate a new project from a cookiecutter template
     cmds:
-      - cookiecutter . -f --no-input project_name=test
-      - cp test/.env.example test/.env
+      - cookiecutter . --no-input project_name=test -f
+  cruft:update:
+    desc: update cruft project
+    cmds:
+      - cruft update --skip-apply-ask --refresh-private-variables
