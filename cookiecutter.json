@@ -1,9 +1,5 @@
 {
   "project_name": "my_project",
-<<<<<<< ours
   "github_runner_scale_set_name": "my_github_runner_scale_set_name",
   "project_github_repository_path": "my_project_github_repository_path"
-=======
-  "github_runner_scale_set_name": "my_github_runner_scale_set_name"
->>>>>>> theirs
 }
