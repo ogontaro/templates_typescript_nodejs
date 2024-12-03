@@ -1,18 +1,19 @@
-name: "Run TODO to Issue"
+# Pull Requestに自動でレビュワーや担当者をアサインします。
+# https://github.com/kentaro-m/auto-assign-action
+# App版はこちら
+# https://probot.github.io/apps/auto-assign/
+---
+name: "Auto Assign"
 
 on:
-  workflow_dispatch:
-  push:
-    branches:
-      - main
+  pull_request:
+    types: [opened, ready_for_review]
 
 jobs:
-  build:
-    runs-on: ["{{ github_runner_scale_set_name | default('ubuntu-latest') }}"]
+  add-reviews:
+    runs-on: [templates-runners]
     steps:
-      - uses: "actions/checkout@v4"
-      - name: "TODO to Issue"
-        uses: "alstr/todo-to-issue-action@v4"
+      - uses: kentaro-m/auto-assign-action@v2.0.0
 
 defaults:
   run:

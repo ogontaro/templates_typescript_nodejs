@@ -1,0 +1,49 @@
+# auto-mergeラベルがついているPRを自動でマージします
+# https://github.com/pascalgn/automerge-action
+---
+name: Auto Merge
+
+on:
+  workflow_dispatch:
+  pull_request:
+    types:
+      - labeled
+      - unlabeled
+      - synchronize
+      - opened
+      - edited
+      - ready_for_review
+      - reopened
+      - unlocked
+  pull_request_review:
+    types:
+      - submitted
+  check_suite:
+    types:
+      - completed
+  status: {}
+
+jobs:
+  automerge:
+    runs-on: ["{{ github_runner_scale_set_name | default('ubuntu-latest') }}"]
+    steps:
+      - id: automerge
+        name: automerge
+        uses: "pascalgn/automerge-action@v0.16.3"
+        env:
+          GITHUB_TOKEN: ${{ '{{' }} secrets.CRUFT_GITHUB_ACCESS_TOKEN {{ '}}' }}
+          MERGE_LABELS: "auto-merge"
+          UPDATE_LABELS: "auto-merge"
+          MERGE_DELETE_BRANCH: true # マージブランチを削除するか(default: false)
+
+defaults:
+  run:
+    # デフォルトシェルを定義して、pipefailオプションが全ステップで有効にする
+    # https://gihyo.jp/article/2024/10/good-practices-for-github-actions
+    shell: bash
+
+# 連続してpushした際に、一つ前の実行中のjobが停止するようにする
+# https://zenn.dev/katzumi/articles/using-concurrency-at-github-actions
+concurrency:
+  group: ${{ '{{' }} github.workflow {{ '}}' }}-${{ '{{' }} github.ref {{ '}}' }}
+  cancel-in-progress: true
